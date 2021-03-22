@@ -17,10 +17,17 @@ void OpenGLWindow::initializeGL() {
   m_program = createProgramFromFile(getAssetsPath() + "UnlitVertexColor.vert",
                                     getAssetsPath() + "UnlitVertexColor.frag");
 
+  m_colorLoc = glGetUniformLocation(m_program, "color");
+  m_rotationLoc = glGetUniformLocation(m_program, "rotation");
+  m_scaleLoc = glGetUniformLocation(m_program, "scale");
+  m_translationLoc = glGetUniformLocation(m_program, "translation");
+
   // clang-format off
-  std::array vertices{glm::vec2(0.0f, 0.5f), 
+  std::array vertices{
+                      glm::vec2(0.0f, 0.5f), 
                       glm::vec2(0.5f, -0.5f),
-                      glm::vec2(-0.5f, -0.5f)};
+                      glm::vec2(-0.5f, -0.5f)
+                      };
   std::array colors{glm::vec3(1.0f, 0.0f, 0.0f), 
                     glm::vec3(1.0f, 0.0f, 1.0f),
                     glm::vec3(0.0f, 1.0f, 0.0f)};
@@ -80,6 +87,10 @@ void OpenGLWindow::paintGL() {
   // Start using the VAO
   glBindVertexArray(m_vao);
 
+  glUniform1f(m_scaleLoc, m_scale);
+  glUniform1f(m_rotationLoc, m_rotation);
+  glUniform2fv(m_translationLoc, 1, &m_translation.x);
+
   // Render a nice colored triangle
   glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -108,36 +119,11 @@ void OpenGLWindow::paintUI() {
     // Static text
     ImGui::Text("Some example widgets are given below.");
 
-    // Combo box
-    {
-      static std::size_t currentIndex{};
-      std::vector<std::string> comboItems{"First item", "Second item",
-                                          "Third item", "Fourth item"};
+    ImGui::SliderFloat("Escala", &m_scale, 0.0f, 4.0f);
+    ImGui::SliderFloat("Rotação", &m_rotation, 0.0f, 2 * 3.1415f);
+    ImGui::SliderFloat("Translação X", &m_translation.x, 0.0f, 1.0f);
+    ImGui::SliderFloat("Translação Y", &m_translation.y, 0.0f, 1.0f);
 
-      if (ImGui::BeginCombo("A combo box",
-                            comboItems.at(currentIndex).c_str())) {
-        for (auto index : iter::range(comboItems.size())) {
-          const bool isSelected{currentIndex == index};
-          if (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))
-            currentIndex = index;
-
-          // Set the initial focus when opening the combo (scrolling + keyboard
-          // navigation focus)
-          if (isSelected) ImGui::SetItemDefaultFocus();
-        }
-        ImGui::EndCombo();
-      }
-    }
-
-    // Edit bools storing our window open/close state
-    ImGui::Checkbox("Show demo window", &m_showDemoWindow);
-    ImGui::Checkbox("Show another window", &m_showAnotherWindow);
-
-    // Slider from 0.0f to 1.0f
-    static float f{};
-    ImGui::SliderFloat("A slider", &f, 0.0f, 1.0f);
-
-    // Edit background color
     ImGui::ColorEdit3("Background", m_clearColor.data());
 
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
@@ -145,23 +131,6 @@ void OpenGLWindow::paintUI() {
 
     // End of window
     ImGui::End();
-
-    // Show the big demo window (Most of the sample code is in
-    // ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear
-    // ImGui!).
-    if (m_showDemoWindow) {
-      ImGui::ShowDemoWindow(&m_showDemoWindow);
-    }
-
-    // Show another simple window
-    if (m_showAnotherWindow) {
-      // Pass a pointer to our bool variable (the window will have a closing
-      // button that will clear the bool when clicked)
-      ImGui::Begin("Another window", &m_showAnotherWindow);
-      ImGui::Text("Hello from another window!");
-      if (ImGui::Button("Close Me")) m_showAnotherWindow = false;
-      ImGui::End();
-    }
   }
 }
 

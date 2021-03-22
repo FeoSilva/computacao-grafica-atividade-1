@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(helloworld)
+project(atividade1)
 
 add_executable(${PROJECT_NAME} main.cpp openglwindow.cpp)
 

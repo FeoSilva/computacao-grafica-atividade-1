@@ -19,6 +19,15 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   GLuint m_vboColors{};
   GLuint m_program{};
 
+  GLint m_translationLoc{};
+  GLint m_colorLoc{};
+  GLint m_scaleLoc{};
+  GLint m_rotationLoc{};
+
+  float m_rotation{0.0f};
+  float m_scale{1.0f};
+  glm::vec2 m_translation{glm::vec2(0)};
+
   int m_viewportWidth{};
   int m_viewportHeight{};
 
