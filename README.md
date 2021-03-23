@@ -4,7 +4,7 @@ This activity aims to manipulate a triangle and change its scale, translation, r
 
 ## Students
 
-Felipe Oliveira Silva - RA: 11201822479
+Felipe Oliveira Silva - RA: 11201822479<br />
 Felipe de Souza Tiozo - RA: 11201822483
 
 
