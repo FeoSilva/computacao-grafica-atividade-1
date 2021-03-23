@@ -1,4 +1,4 @@
-# Activity 1
+# CG - Activity 1
 
 This activity aims to manipulate a triangle and change its scale, translation, rotation and color properties using OpenGL. The code was made using the ABCg library, with OpenGL, the menu, and the buttons on each board were made with ImGui and the lines and columns, in addition to the end-of-game trace, were made with Open graphics.
 
