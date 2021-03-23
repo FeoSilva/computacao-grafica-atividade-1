@@ -15,7 +15,7 @@ void main() {
                       inPosition.x * sinAngle + inPosition.y * cosAngle);
 
   vec2 newPosition = rotated * scale + translation;
-  gl_Position = vec4(newPosition, 0, 1);
+  gl_Position = vec4(newPosition, 0.0, 1.0);
 
   fragColor = gl_Position;
 }

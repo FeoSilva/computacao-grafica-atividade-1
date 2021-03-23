@@ -17,21 +17,19 @@ void OpenGLWindow::initializeGL() {
   m_program = createProgramFromFile(getAssetsPath() + "UnlitVertexColor.vert",
                                     getAssetsPath() + "UnlitVertexColor.frag");
 
-  m_colorLoc = glGetUniformLocation(m_program, "color");
-  m_rotationLoc = glGetUniformLocation(m_program, "rotation");
-  m_scaleLoc = glGetUniformLocation(m_program, "scale");
-  m_translationLoc = glGetUniformLocation(m_program, "translation");
-
   // clang-format off
-  std::array vertices{
-                      glm::vec2(0.0f, 0.5f), 
+  std::array vertices{glm::vec2(0.0f, 0.5f), 
                       glm::vec2(0.5f, -0.5f),
-                      glm::vec2(-0.5f, -0.5f)
-                      };
+                      glm::vec2(-0.5f, -0.5f)};
+
   std::array colors{glm::vec3(1.0f, 0.0f, 0.0f), 
                     glm::vec3(1.0f, 0.0f, 1.0f),
                     glm::vec3(0.0f, 1.0f, 0.0f)};
   // clang-format on
+
+  m_rotationLoc = glGetUniformLocation(m_program, "rotation");
+  m_scaleLoc = glGetUniformLocation(m_program, "scale");
+  m_translationLoc = glGetUniformLocation(m_program, "translation");
 
   // Generate a new VBO and get the associated ID
   glGenBuffers(1, &m_vboVertices);
@@ -114,10 +112,7 @@ void OpenGLWindow::paintUI() {
     }
 
     // Window begin
-    ImGui::Begin("Hello! This is a Dear ImGui window");
-
-    // Static text
-    ImGui::Text("Some example widgets are given below.");
+    ImGui::Begin("Olá! Faça as transformações no triângulo:");
 
     ImGui::SliderFloat("Escala", &m_scale, 0.0f, 4.0f);
     ImGui::SliderFloat("Rotação", &m_rotation, 0.0f, 2 * 3.1415f);

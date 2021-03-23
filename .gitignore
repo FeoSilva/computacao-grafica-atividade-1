@@ -5,6 +5,7 @@
 # IntelliJ IDEA
 .idea
 *.iml
+.DS_Store
 
 # Visual Studio and VS Code
 .vs
