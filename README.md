@@ -8,6 +8,15 @@ Felipe Oliveira Silva - RA: 11201822479<br />
 Felipe de Souza Tiozo - RA: 11201822483
 
 
+# Build and Running
+
+To run in the browser, run the command in the terminal
+```
+./build-wasm.sh
+```
+
+Then, open the file `public/atividade1.html`
+
 # ABCg
 
 Development framework accompanying the course [MCTA008-17 Computer Graphics](http://professor.ufabc.edu.br/~harlen.batagelo/cg/) at [UFABC](https://www.ufabc.edu.br/).

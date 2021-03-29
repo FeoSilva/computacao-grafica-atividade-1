@@ -18,13 +18,13 @@ void OpenGLWindow::initializeGL() {
                                     getAssetsPath() + "UnlitVertexColor.frag");
 
   // clang-format off
-  std::array vertices{glm::vec2(0.0f, 0.5f), 
+  std::array vertices{glm::vec2(0.0f, 0.5f),
                       glm::vec2(0.5f, -0.5f),
                       glm::vec2(-0.5f, -0.5f)};
 
-  std::array colors{glm::vec3(1.0f, 0.0f, 0.0f), 
-                    glm::vec3(1.0f, 0.0f, 1.0f),
-                    glm::vec3(0.0f, 1.0f, 0.0f)};
+  //  std::array colors{glm::vec3(1.0f, 0.0f, 0.0f),
+  //                   glm::vec3(1.0f, 0.0f, 1.0f),
+  //                   glm::vec3(0.0f, 1.0f, 0.0f)};
   // clang-format on
 
   m_rotationLoc = glGetUniformLocation(m_program, "rotation");
@@ -41,14 +41,14 @@ void OpenGLWindow::initializeGL() {
   // Unbinding the VBO is allowed (data can be released now)
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-  glGenBuffers(1, &m_vboColors);
-  glBindBuffer(GL_ARRAY_BUFFER, m_vboColors);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors.data(), GL_STATIC_DRAW);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  // glGenBuffers(1, &m_vboColors);
+  // glBindBuffer(GL_ARRAY_BUFFER, m_vboColors);
+  // glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors.data(),
+  // GL_STATIC_DRAW); glBindBuffer(GL_ARRAY_BUFFER, 0);
 
   // Get location of attributes in the program
   GLint positionAttribute = glGetAttribLocation(m_program, "inPosition");
-  GLint colorAttribute = glGetAttribLocation(m_program, "inColor");
+  // GLint colorAttribute = glGetAttribLocation(m_program, "inColor");
 
   // Create VAO
   glGenVertexArrays(1, &m_vao);
@@ -61,10 +61,10 @@ void OpenGLWindow::initializeGL() {
   glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-  glEnableVertexAttribArray(colorAttribute);
-  glBindBuffer(GL_ARRAY_BUFFER, m_vboColors);
-  glVertexAttribPointer(colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  // glEnableVertexAttribArray(colorAttribute);
+  // glBindBuffer(GL_ARRAY_BUFFER, m_vboColors);
+  // glVertexAttribPointer(colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+  // glBindBuffer(GL_ARRAY_BUFFER, 0);
 
   // End of binding to current VAO
   glBindVertexArray(0);
@@ -138,6 +138,6 @@ void OpenGLWindow::terminateGL() {
   // Release OpenGL resources
   glDeleteProgram(m_program);
   glDeleteBuffers(1, &m_vboVertices);
-  glDeleteBuffers(1, &m_vboColors);
+  // glDeleteBuffers(1, &m_vboColors);
   glDeleteVertexArrays(1, &m_vao);
 }
