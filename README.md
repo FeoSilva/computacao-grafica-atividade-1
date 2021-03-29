@@ -3,7 +3,7 @@
 This activity aims to manipulate a triangle and change its scale, translation, rotation and color properties using OpenGL. The code was made using the ABCg library, with OpenGL, the menu, and the buttons on each board were made with ImGui and the lines and columns, in addition to the end-of-game trace, were made with Open graphics.
 
 ## Demo
-https://github.com/FeoSilva/computacao-grafica-atividade-1
+https://feosilva.github.io/computacao-grafica-atividade-1/public/atividade1.html
 
 ## Students
 
