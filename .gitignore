@@ -26,6 +26,10 @@ CMakeSettings.json
 compile_commands.json
 
 # Emscripten output
-# public/*.data
-# public/*.js
-# public/*.wasm
+public/*.data
+public/*.js
+public/*.wasm
+
+!public/atividade1.data
+!public/atividade1.js
+!public/atividade1.wasm
